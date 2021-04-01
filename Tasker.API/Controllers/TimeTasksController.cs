@@ -30,21 +30,21 @@ namespace Tasker.API.Controllers
             return Ok(timeTask);
         }
 
-        // PUT: api/SeverityTasks/5
+        // PUT: api/TimeTasks/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutSeverityTask(int id, SeverityTask severityTask)
+        public IHttpActionResult PutTimeTasks(int id, TimeTask timeTasks)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != severityTask.TaskId)
+            if (id != timeTasks.TaskId)
             {
                 return BadRequest();
             }
 
-            db.Entry(severityTask).State = EntityState.Modified;
+            db.Entry(timeTasks).State = EntityState.Modified;
 
             try
             {
@@ -52,7 +52,7 @@ namespace Tasker.API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!db.SeverityTaskExists(id))
+                if (!db.TimeTaskExists(id))
                 {
                     return NotFound();
                 }
@@ -65,20 +65,20 @@ namespace Tasker.API.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/SeverityTasks
-        [ResponseType(typeof(SeverityTask))]
-        public IHttpActionResult PostSeverityTask(Task task, SeverityTask severityTask)
+        // POST: api/TimeTasks
+        [ResponseType(typeof(TimeTask))]
+        public IHttpActionResult PostSeverityTask(Task task, TimeTask timeTask)
         {
-            if (!ModelState.IsValid || task.Id != severityTask.TaskId || db.TaskExists(task.Id))
+            if (!ModelState.IsValid || task.Id != timeTask.TaskId || db.TaskExists(task.Id))
             {
                 return BadRequest(ModelState);
             }
 
             db.Tasks.Add(task);
-            db.SeverityTasks.Add(severityTask);
+            db.TimeTasks.Add(timeTask);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = severityTask.TaskId }, severityTask);
+            return CreatedAtRoute("DefaultApi", new { id = timeTask.TaskId }, timeTask);
         }
 
         protected override void Dispose(bool disposing)
