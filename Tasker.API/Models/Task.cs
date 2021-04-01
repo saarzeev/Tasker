@@ -8,12 +8,6 @@ namespace Tasker.API.Models
 
     public partial class Task
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Task()
-        {
-            TimeTasks = new HashSet<TimeTask>();
-        }
-
         public int Id { get; set; }
 
         [Required]
@@ -30,7 +24,6 @@ namespace Tasker.API.Models
 
         public virtual SeverityTask SeverityTask { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TimeTask> TimeTasks { get; set; }
+        public virtual TimeTask TimeTask { get; set; }
     }
 }

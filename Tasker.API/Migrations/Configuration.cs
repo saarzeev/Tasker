@@ -6,14 +6,14 @@ namespace Tasker.API.Migrations
     using System.Linq;
     using Tasker.API.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Tasker.API.Models.TasksContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Tasker.API.Models.TasksDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Tasker.API.Models.TasksContext context)
+        protected override void Seed(Tasker.API.Models.TasksDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

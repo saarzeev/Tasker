@@ -14,14 +14,7 @@ namespace Tasker.API.Controllers
 {
     public class SeverityTasksController : ApiController
     {
-        private TasksContext db = new TasksContext();
-
-        // GET: api/Tasks
-        //public IQueryable<Task> GetTasks()
-        //{
-        //    db.Configuration.ProxyCreationEnabled = false;
-        //    return db.Tasks;
-        //}
+        private TasksDBContext db = new TasksDBContext();
 
         // GET: api/SeverityTasks/5
         [ResponseType(typeof(SeverityTask))]
@@ -73,33 +66,18 @@ namespace Tasker.API.Controllers
 
         // POST: api/SeverityTasks
         [ResponseType(typeof(SeverityTask))]
-        public IHttpActionResult PostSeverityTask(SeverityTask severityTask)
+        public IHttpActionResult PostSeverityTask(Task task, SeverityTask severityTask)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || task.Id != severityTask.TaskId || TaskExists(task.Id))
             {
                 return BadRequest(ModelState);
             }
 
+            db.Tasks.Add(task);
             db.SeverityTasks.Add(severityTask);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = severityTask.TaskId }, severityTask);
-        }
-
-        // DELETE: api/SeverityTasks/5
-        [ResponseType(typeof(SeverityTask))]
-        public IHttpActionResult DeleteSeverityTask(int id)
-        {
-            SeverityTask severityTask = db.SeverityTasks.Find(id);
-            if (severityTask == null)
-            {
-                return NotFound();
-            }
-
-            db.SeverityTasks.Remove(severityTask);
-            db.SaveChanges();
-
-            return Ok(severityTask);
         }
 
         protected override void Dispose(bool disposing)
@@ -114,6 +92,11 @@ namespace Tasker.API.Controllers
         private bool SeverityTaskExists(int id)
         {
             return db.SeverityTasks.Count(e => e.TaskId == id) > 0;
+        }
+
+        private bool TaskExists(int id)
+        {
+            return db.Tasks.Count(e => e.Id == id) > 0;
         }
     }
 }

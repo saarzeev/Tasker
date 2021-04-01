@@ -14,7 +14,7 @@ namespace Tasker.API.Controllers
 {
     public class TasksController : ApiController
     {
-        private TasksContext db = new TasksContext();
+        private TasksDBContext db = new TasksDBContext();
 
         // GET: api/Tasks
         public IQueryable<Task> GetTasks()

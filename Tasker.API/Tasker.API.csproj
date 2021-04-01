@@ -242,7 +242,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SeverityTask.cs" />
     <Compile Include="Models\Task.cs" />
-    <Compile Include="Models\TasksContext.cs" />
+    <Compile Include="Models\TasksDBContext.cs" />
     <Compile Include="Models\TimeTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

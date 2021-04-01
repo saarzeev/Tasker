@@ -5,12 +5,11 @@ namespace Tasker.API.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class TasksContext : DbContext
+    public partial class TasksDBContext : DbContext
     {
-        public TasksContext()
-            : base("name=TaskContext")
+        public TasksDBContext()
+            : base("name=TasksDBContext")
         {
-            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<SeverityTask> SeverityTasks { get; set; }
@@ -36,9 +35,10 @@ namespace Tasker.API.Models
                 .WithRequired(e => e.Task)
                 .WillCascadeOnDelete();
 
-            modelBuilder.Entity<TimeTask>()
-                .Property(e => e.TaskDate)
-                .IsFixedLength();
+            modelBuilder.Entity<Task>()
+                .HasOptional(e => e.TimeTask)
+                .WithRequired(e => e.Task)
+                .WillCascadeOnDelete();
         }
     }
 }
