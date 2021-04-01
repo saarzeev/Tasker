@@ -1,9 +1,10 @@
-namespace Tasker.API.Models
+namespace Tasker.API.Context
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using Tasker.API.Models;
 
     public partial class TasksDBContext : DbContext
     {

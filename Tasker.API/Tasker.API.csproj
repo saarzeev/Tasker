@@ -232,7 +232,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Context\TasksDBContextUtils.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TimeTasksController.cs" />
     <Compile Include="Controllers\SeverityTasksController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="DBConnection\SQLConnection.cs" />
@@ -242,7 +244,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SeverityTask.cs" />
     <Compile Include="Models\Task.cs" />
-    <Compile Include="Models\TasksDBContext.cs" />
+    <Compile Include="Context\TasksDBContext.cs" />
     <Compile Include="Models\TimeTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

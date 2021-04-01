@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Tasker.API.Models;
+using Tasker.API.Context;
 
 namespace Tasker.API.Controllers
 {
@@ -57,7 +58,7 @@ namespace Tasker.API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TaskExists(id))
+                if (!db.TaskExists(id))
                 {
                     return NotFound();
                 }
@@ -69,21 +70,6 @@ namespace Tasker.API.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        //// POST: api/Tasks
-        //[ResponseType(typeof(Task))]
-        //public IHttpActionResult PostTask(Task task)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Tasks.Add(task);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = task.Id }, task);
-        //}
 
         // DELETE: api/Tasks/5
         [ResponseType(typeof(Task))]
@@ -108,11 +94,6 @@ namespace Tasker.API.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool TaskExists(int id)
-        {
-            return db.Tasks.Count(e => e.Id == id) > 0;
         }
     }
 }

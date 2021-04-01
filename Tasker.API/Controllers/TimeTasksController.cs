@@ -13,21 +13,21 @@ using Tasker.API.Context;
 
 namespace Tasker.API.Controllers
 {
-    public class SeverityTasksController : ApiController
+    public class TimeTasksController : ApiController
     {
         private TasksDBContext db = new TasksDBContext();
 
-        // GET: api/SeverityTasks/5
-        [ResponseType(typeof(SeverityTask))]
-        public IHttpActionResult GetSeverityTask(int id)
+        // GET: api/TimeTasks/5
+        [ResponseType(typeof(TimeTask))]
+        public IHttpActionResult GetTimeTask(int id)
         {
-            SeverityTask severityTask= db.SeverityTasks.Find(id);
-            if (severityTask == null)
+            TimeTask timeTask = db.TimeTasks.Find(id);
+            if (timeTask == null)
             {
                 return NotFound();
             }
 
-            return Ok(severityTask);
+            return Ok(timeTask);
         }
 
         // PUT: api/SeverityTasks/5
